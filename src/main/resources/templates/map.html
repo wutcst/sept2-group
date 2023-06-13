@@ -1,0 +1,329 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <style>-->
+<!--        .hidden {-->
+<!--            display: none;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+<!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--    <script th:inline="javascript">-->
+<!--        $(document).ready(function (){-->
+<!--            var msg = [[${take}]];-->
+<!--            console.log(msg);-->
+<!--            if(msg == "error") {-->
+<!--                $('.alert-warning').css('display','block');-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+<!--</head>-->
+<!--    <body>-->
+<!--        <div id="myAlert2" class="alert alert-warning" style="display: none">-->
+<!--            <a href="#" class="close" data-dismiss="alert">&times;</a>-->
+<!--            <strong>警告！</strong>take失败，剩余空间不足-->
+<!--        </div>-->
+<!--        <h1 th:text="${description}">You are outside the main entrance of the university</h1>-->
+<!--        <a th:if="${west} eq 'west'" th:href="@{/go/west}">west</a>-->
+<!--        <a th:if="${east} eq 'east'" th:href="@{/go/east}">east</a>-->
+<!--        <a th:if="${south} eq 'south'" th:href="@{/go/south}">south</a>-->
+<!--        <a th:if="${north} eq 'north'" th:href="@{/go/north}">north</a>-->
+<!--        <a th:href="@{/back}">back</a>-->
+<!--        <p th:text="饼干大小+${cookie}"></p>-->
+<!--        <p th:text="玩家姓名+${playerName}"></p>-->
+<!--        <p th:text="玩家承受最大重量+${maxWeight}"></p>-->
+<!--        <a th:href="@{/eatCookie}" class="btn btn-danger">eat</a>-->
+<!--        <button class="btn btn-primary" id="toggleButton">look</button>-->
+<!--        <table id="table1" style="display: none;" class="table table-striped">-->
+<!--            <caption>玩家物品信息</caption>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>序号</th>-->
+<!--                <th>物品名</th>-->
+<!--                <th>重量</th>-->
+<!--                <th>操作</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="PlayerWeight:${PlayerWeights}">-->
+<!--                <td th:text="${PlayerWeightStat.index+1}"></td>-->
+<!--                <td th:text="物品+${PlayerWeightStat.index+1}"></td>-->
+<!--                <td th:text="${PlayerWeight}"></td>-->
+<!--                <td><a th:href="@{/drop/{id}(id=${PlayerWeightStat.index})}" class="btn btn-danger">drop</a></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        <table id="table2" style="display: none;" class="table table-striped">-->
+<!--            <caption>房间物品信息</caption>-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>序号</th>-->
+<!--                    <th>物品名</th>-->
+<!--                    <th>重量</th>-->
+<!--                    <th>操作</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                <tr th:each="RoomWeight:${RoomWeights}">-->
+<!--                    <td th:text="${RoomWeightStat.index+1}"></td>-->
+<!--                    <td th:text="物品+${RoomWeightStat.index+1}"></td>-->
+<!--                    <td th:text="${RoomWeight}"></td>-->
+<!--                    <td><div class="btn-group">-->
+<!--                        <a th:href="@{/take/{id}(id=${RoomWeightStat.index})}" class="btn btn-default" >take</a>-->
+<!--                    </div></td>-->
+<!--                </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        <script>-->
+<!--            var toggleButton = document.getElementById("toggleButton");-->
+<!--            var table1 = document.getElementById("table1");-->
+<!--            var table2 = document.getElementById("table2");-->
+
+<!--            toggleButton.addEventListener("click", function() {-->
+<!--                if (table1.style.display === "none") {-->
+<!--                    table1.style.display = "table";-->
+<!--                    table2.style.display = "table";-->
+<!--                } else {-->
+<!--                    table1.style.display = "none";-->
+<!--                    table2.style.display = "none";-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
+<!--    </body>-->
+
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>World of Zuul</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+        /* 自定义弹框样式 */
+        .adventure-popup {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+
+        /* 标题样式 */
+        .adventure-popup h3 {
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        /* 按钮样式 */
+        .adventure-popup button {
+            background-color: #8b0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            var msg = /*[[${take}]]*/ '';
+            console.log(msg);
+            if (msg === "error") {
+                $('.alert-warning').css('display', 'block');
+            }
+
+            // 关闭错误提示框
+            $('.alert-warning .close').click(function () {
+                $(this).parent().hide();
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="myAlert2" class="alert alert-warning" style="display: none">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>警告！</strong>take失败，剩余空间不足
+</div>
+<div class="container">
+    <div class="jumbotron bg-dark text-white text-center">
+        <h1 class="display-4" th:text="${description}">You are outside the main entrance of the university</h1>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Direction Buttons">
+            <a th:if="${west} eq 'west'" th:href="@{/go/west}" class="btn btn-primary">west</a>
+            <a th:if="${east} eq 'east'" th:href="@{/go/east}" class="btn btn-primary">east</a>
+            <a th:if="${south} eq 'south'" th:href="@{/go/south}" class="btn btn-primary">south</a>
+            <a th:if="${north} eq 'north'" th:href="@{/go/north}" class="btn btn-primary">north</a>
+            <a th:href="@{/back}" class="btn btn-primary">back</a>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p class="font-weight-bold">Player Info:</p>
+            <p>Cookie Size: <span th:text="${cookie}"></span></p>
+            <p>Player Name: <span th:text="${playerName}"></span></p>
+            <p>Max Weight: <span th:text="${maxWeight}"></span></p>
+        </div>
+        <div class="col-md-6">
+<!--            <button class="btn btn-primary float-end me-2" onclick="showMessage()" style="margin-left: 10px;">Help</button>-->
+            <button id="helpButton" class="btn btn-primary float-end me-2" onclick="showMessage()" style="margin-left: 10px;">Help</button>
+            <a th:href="@{/eatCookie}" class="btn btn-danger float-end">Eat Cookie</a>
+            <button class="btn btn-primary float-end me-2" id="toggleButton">Look</button>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <table id="table1" style="display: none;" class="table table-striped">
+                <caption class="font-weight-bold">Player Items</caption>
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Item Name</th>
+                    <th>Weight</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="PlayerWeight, PlayerWeightStat : ${PlayerWeights}">
+                    <td th:text="${PlayerWeightStat.index+1}"></td>
+                    <td th:text="'Item ' + ${PlayerWeightStat.index+1}"></td>
+                    <td th:text="${PlayerWeight}"></td>
+                    <td>
+                        <a th:href="@{/drop/{id}(id=${PlayerWeightStat.index})}" class="btn btn-danger btn-sm">Drop</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table id="table2" style="display: none;" class="table table-striped">
+                <caption class="font-weight-bold">Room Items</caption>
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Item Name</th>
+                    <th>Weight</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="RoomWeight, RoomWeightStat : ${RoomWeights}">
+                    <td th:text="${RoomWeightStat.index+1}"></td>
+                    <td th:text="'Item ' + ${RoomWeightStat.index+1}"></td>
+                    <td th:text="${RoomWeight}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a th:href="@{/take/{id}(id=${RoomWeightStat.index})}" class="btn btn-primary btn-sm">Take</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var helpButton = document.getElementById('helpButton');
+    var popup = null; // 存储弹框元素的变量
+
+    var showMessage = function() {
+        if (popup === null) { // 检查弹框是否已存在
+            // 创建弹框元素
+            popup = document.createElement('div');
+            popup.className = 'adventure-popup';
+
+            // 创建标题元素
+            var title = document.createElement('h3');
+            title.textContent = 'You are lost. You are alone. You wander around at the university.';
+            popup.appendChild(title);
+
+            // 创建提示信息元素
+            var message = document.createElement('p');
+            message.textContent = 'Your command words are: east south west north.';
+            popup.appendChild(message);
+            var message = document.createElement('p');
+            message.textContent = 'There is a teleport room in the south of the theater, which is randomly teleported to a room after entering.';
+            popup.appendChild(message);
+
+            // 创建关闭按钮元素
+            var closeButton = document.createElement('button');
+            closeButton.textContent = 'Close';
+            closeButton.onclick = function() {
+                document.body.removeChild(popup);
+                popup = null; // 重置弹框元素
+                helpButton.addEventListener('click', showMessage); // 重新添加点击事件处理程序
+            };
+            popup.appendChild(closeButton);
+
+            // 将弹框添加到页面中
+            document.body.appendChild(popup);
+
+            helpButton.removeEventListener('click', showMessage); // 取消按钮的点击事件处理程序
+        }
+    };
+
+    helpButton.addEventListener('click', showMessage);
+</script>
+
+
+
+
+<script>
+    var toggleButton = document.getElementById("toggleButton");
+    var table1 = document.getElementById("table1");
+    var table2 = document.getElementById("table2");
+
+    // 检查本地存储中的状态
+    var isTableVisible = localStorage.getItem("isTableVisible");
+
+    if (isTableVisible === "true") {
+        // 显示表格
+        table1.style.display = "table";
+        table2.style.display = "table";
+        toggleButton.innerHTML = "Hide";
+    } else {
+        // 隐藏表格
+        table1.style.display = "none";
+        table2.style.display = "none";
+        toggleButton.innerHTML = "Look";
+    }
+
+    toggleButton.addEventListener("click", function() {
+        if (table1.style.display === "none") {
+            // 切换为显示状态
+            table1.style.display = "table";
+            table2.style.display = "table";
+            toggleButton.innerHTML = "Hide";
+            // 存储状态到本地存储
+            localStorage.setItem("isTableVisible", "true");
+        } else {
+            // 切换为隐藏状态
+            table1.style.display = "none";
+            table2.style.display = "none";
+            toggleButton.innerHTML = "Look";
+            // 存储状态到本地存储
+            localStorage.setItem("isTableVisible", "false");
+        }
+    });
+</script>
+
+</body>
+</html>

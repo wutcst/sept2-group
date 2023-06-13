@@ -1,0 +1,82 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <a th:href="@{/Game}">开始游戏</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>World of Zuul</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        body {
+            background-image: url("/img/game_diagram.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .game-intro {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .game-start-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .game-start-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .game-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .game-diagram img {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="game-intro">
+    <h1>欢迎来到巨洞冒险游戏</h1>
+    <p>在这个游戏中，你将探索神秘的巨洞，寻找宝藏并解决谜题。准备好开始冒险了吗？</p>
+</div>
+
+<a th:href="@{/Game}" class="game-start-btn">开始游戏</a>
+
+<!--<div class="game-diagram">-->
+<!--    <img src="/img/game_diagram.jpg" alt="Game Diagram">-->
+<!--</div>-->
+</body>
+</html>
