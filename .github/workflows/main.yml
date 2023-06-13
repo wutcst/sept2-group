@@ -1,0 +1,23 @@
+name: Code Format Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  code-format-check:
+    name: Code Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Code Format Check
+        run: mvn verify -Pcheck-formatting
