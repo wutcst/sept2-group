@@ -13,6 +13,6 @@ public class LookCommand extends Command {
             LookWeight+="物品i的重量为"+room.getWeight().get(i)+"\n";
         }
         System.out.println(LookWeight);
-        return false;
+        return false; 
     }
 }
