@@ -28,7 +28,7 @@ public class Game
     private LinkedList<String> directions =new LinkedList<>();//保存方向,实现back
     private Parser parser;
     private Room currentRoom;
-    private Player player;
+    private Player player;//玩家类
 
     public Game()
     {
@@ -64,7 +64,7 @@ public class Game
 
         office.setExit("west", lab);
 
-        radom.setExit("north",theater);
+        radom.setExit("north",theater);//随机房间的位置
 
         outside.setExit("radom",theater);
         lab.setExit("radom",theater);
@@ -125,15 +125,18 @@ public class Game
         directions.removeFirst();
     }
 
+    //玩家拿去物品
     public boolean take(int n){
         if(player.take(currentRoom,n)) return true;
         else return false;
     }
 
+    //玩家丢弃物品
     public void drop(int n){
         player.drop(currentRoom,n);
     }
 
+    //玩家吃饼干
     public void eatCookie(){
         player.eatMagicCookie(currentRoom);
     }
