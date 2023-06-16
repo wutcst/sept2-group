@@ -1,4 +1,4 @@
-name: Build and Generate JAR
+name: 构建和生成 JAR 文件
 
 on:
   push:
@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
+    - name: 检出仓库
       uses: actions/checkout@v2
       
-    - name: Set up JDK
+    - name: 配置 JDK
       uses: actions/setup-java@v2
       with:
         java-version: '11'  # 替换为你所需的 Java 版本
         
-    - name: Build with Maven
+    - name: 使用 Maven 构建
       run: mvn package
     
-    - name: Upload JAR artifact
+    - name: 上传 JAR 文件
       uses: actions/upload-artifact@v2
       with:
         name: my-app-jar
