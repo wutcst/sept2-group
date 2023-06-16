@@ -1,5 +1,8 @@
-package cn.edu.whut.sept.zuul;
+package cn.edu.whut.sept.zuul.Service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class HelpCommand extends Command
 {
     private CommandWords commandWords;
