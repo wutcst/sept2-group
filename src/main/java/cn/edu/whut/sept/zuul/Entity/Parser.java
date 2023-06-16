@@ -1,5 +1,7 @@
-package cn.edu.whut.sept.zuul;
+package cn.edu.whut.sept.zuul.Entity;
 
+import cn.edu.whut.sept.zuul.Service.Command;
+import cn.edu.whut.sept.zuul.Service.CommandWords;
 
 import java.util.Scanner;
 
@@ -38,6 +40,7 @@ public class Parser
         }
         return command;
     }
+
 
     public void showCommands()
     {
