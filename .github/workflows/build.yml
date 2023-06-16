@@ -16,7 +16,7 @@ jobs:
     - name: 配置 JDK
       uses: actions/setup-java@v2
       with:
-        java-version: '17'  # 替换为你所需的 Java 版本
+        java-version: '11'  # 替换为你所需的 Java 版本
         
     - name: 使用 Maven 构建
       run: mvn package
