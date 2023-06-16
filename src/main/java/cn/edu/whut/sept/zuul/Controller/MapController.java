@@ -22,7 +22,7 @@ public class MapController {
     GoCommand gocommand;
     @Autowired
     BackCommand backCommand;
-
+ 
     @GetMapping("/Game")
     public String StartGame(Model model){
         String RoomDescription=game.getCurrentRoom().getLongDescription();
