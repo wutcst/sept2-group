@@ -1,23 +1,32 @@
-name: Code Format Check
+name: Java CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  code-format-check:
-    name: Code Format Check
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '8'
+    - name: Set up JDK 8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
 
-      - name: Code Format Check
-        run: mvn verify -Pcheck-formatting
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Checkstyle
+      run: ./gradlew checkstyleMain checkstyleTest
+
+    - name: Run tests
+      run: ./gradlew test --info
