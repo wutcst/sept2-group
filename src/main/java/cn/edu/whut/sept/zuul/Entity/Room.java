@@ -10,8 +10,8 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private ArrayList<Integer> weight = new ArrayList<>();
-    private int cookie;
+    private ArrayList<Integer> weight = new ArrayList<>();//房间内物品重量
+    private int cookie;//饼干大小
 
     public Room(String description)
     {
