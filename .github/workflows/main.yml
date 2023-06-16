@@ -3,7 +3,7 @@ name: Code Format Check
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   code-format-check:
