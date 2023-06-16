@@ -32,7 +32,6 @@ public class BackCommand extends Command {
                     break;
                 case "radom":
                     direction="radom";
-
             }
             Room nextRoom = game.getCurrentRoom().getExit(direction);
             game.removedirection();
