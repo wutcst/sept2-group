@@ -61,10 +61,12 @@ public class Room
         return exits.get(direction);
     }
 
+    //移除物品
     public void removeWeight(int n){
         weight.remove(n);
     }
 
+    //增加物品
     public void addWeight(int w){
         weight.add(w);
     }
