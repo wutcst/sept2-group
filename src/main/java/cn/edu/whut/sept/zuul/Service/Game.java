@@ -11,22 +11,35 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 1.0
  */
-package cn.edu.whut.sept.zuul;
+package cn.edu.whut.sept.zuul.Service;
 
+import cn.edu.whut.sept.zuul.Entity.Parser;
+import cn.edu.whut.sept.zuul.Entity.Player;
+import cn.edu.whut.sept.zuul.Entity.Room;
+import lombok.Data;
+import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+
+@Service
+@Data
 public class Game
 {
+    private LinkedList<String> directions =new LinkedList<>();//保存方向,实现back
     private Parser parser;
     private Room currentRoom;
+    private Player player;
 
     public Game()
     {
         createRooms();
         parser = new Parser();
+        player=new Player("player",300);
     }
 
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, radom;
 
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -34,6 +47,7 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        radom = new Room("in the radom room");
 
         // initialise room exits
         outside.setExit("east", theater);
@@ -41,6 +55,7 @@ public class Game
         outside.setExit("west", pub);
 
         theater.setExit("west", outside);
+        theater.setExit("south",radom);
 
         pub.setExit("east", outside);
 
@@ -48,6 +63,14 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+
+        radom.setExit("north",theater);
+
+        outside.setExit("radom",theater);
+        lab.setExit("radom",theater);
+        pub.setExit("radom",theater);
+        theater.setExit("radom",theater);
+        office.setExit("radom",theater);
 
         currentRoom = outside;  // start game outside
     }
@@ -82,11 +105,36 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
 
+    public LinkedList<String> getDirections() {
+        return directions;
+    }
+
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
     public void setCurrentRoom(Room room){
         this.currentRoom = room;
+    }
+
+    public void adddirection(String direction){
+        directions.addFirst(direction);
+    }
+
+    public void removedirection(){
+        directions.removeFirst();
+    }
+
+    public boolean take(int n){
+        if(player.take(currentRoom,n)) return true;
+        else return false;
+    }
+
+    public void drop(int n){
+        player.drop(currentRoom,n);
+    }
+
+    public void eatCookie(){
+        player.eatMagicCookie(currentRoom);
     }
 }
