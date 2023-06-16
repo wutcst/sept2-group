@@ -23,7 +23,7 @@ public class CommandWords
     public void showAll()
     {
         for(Iterator i = commands.keySet().iterator(); i.hasNext(); ) {
-            System.out.print(i.next() + "  ");
+            System.out.print(i.next() + "  "); 
         }
         System.out.println();
     }
