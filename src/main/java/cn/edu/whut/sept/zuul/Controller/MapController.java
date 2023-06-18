@@ -22,7 +22,7 @@ public class MapController {
     GoCommand gocommand;
     @Autowired
     BackCommand backCommand;
- 
+
     @GetMapping("/Game")
     public String StartGame(Model model){
         String RoomDescription=game.getCurrentRoom().getLongDescription();
@@ -47,6 +47,11 @@ public class MapController {
         return "map";
     }
 
+    /**
+     *
+     * @param direction 前进的方向
+     * @return 返回游戏界面
+     */
     @GetMapping("/go/{direction}")
     public String Godirection(@PathVariable String direction){
         //Command gocommand = new GoCommand();
@@ -55,6 +60,12 @@ public class MapController {
         return "redirect:/Game";
     }
 
+    /**
+     *
+     * @param id
+     * @param redirectAttributes
+     * @return 玩家拿去某件物品
+     */
     @GetMapping("/take/{id}")
     public String take(@PathVariable int id, RedirectAttributes redirectAttributes){
         boolean result=game.take(id);
@@ -63,12 +74,21 @@ public class MapController {
         return "redirect:/Game";
     }
 
+    /**
+     *
+     * @param id
+     * @return 玩家丢弃某件物品
+     */
     @GetMapping("/drop/{id}")
     public String drop(@PathVariable int id){
         game.drop(id);
         return "redirect:/Game";
     }
 
+    /**
+     * 玩家返回前一个房间
+     * @return
+     */
     @GetMapping("/back")
     public String back(){
         //Command command=new BackCommand();
@@ -76,6 +96,10 @@ public class MapController {
         return "redirect:/Game";
     }
 
+    /**
+     * 玩家吃掉房间的魔法饼干
+     * @return
+     */
     @GetMapping("/eatCookie")
     public String eatCookie(){
         game.eatCookie();
