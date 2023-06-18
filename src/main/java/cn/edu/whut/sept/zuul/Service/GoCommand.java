@@ -22,6 +22,7 @@ public class GoCommand extends Command
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
+            //进入随机房间便进行传送
         else if(nextRoom.getShortDescription().equals("in the radom room")){
             int r = new Random().nextInt(5);
             game.adddirection("radom");
