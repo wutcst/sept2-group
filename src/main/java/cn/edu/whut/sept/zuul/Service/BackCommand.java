@@ -8,6 +8,9 @@ import java.util.LinkedList;
 @Service
 public class BackCommand extends Command {
     @Override
+    /**
+     * 执行返回操作
+     */
     public boolean execute(Game game) {
 
         Room currentRoom = game.getCurrentRoom();
@@ -32,6 +35,7 @@ public class BackCommand extends Command {
                     break;
                 case "radom":
                     direction="radom";
+
             }
             Room nextRoom = game.getCurrentRoom().getExit(direction);
             game.removedirection();
