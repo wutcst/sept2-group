@@ -15,13 +15,17 @@ public class Player {
         this.maxWeight=maxWeight;
     }
 
-    //玩家丢弃物品
     public void drop(Room room, int i){
         int w = PlayerWeights.remove(i);
         room.addWeight(w);
     }
 
-    //玩家拿去物品
+    /**
+     * 玩家拿去房间中的物品
+     * @param room 房间
+     * @param n 物品序号
+     * @return 返回拿去结果
+     */
     public boolean take(Room room,int n){
         int sum=0;
         for(int i=0;i<PlayerWeights.size();i++){
@@ -35,14 +39,20 @@ public class Player {
         }
     }
 
-    //玩家吃魔法饼干
+    /**
+     * 玩家吃掉房间内的魔法饼干
+     * @param room
+     */
     public void eatMagicCookie(Room room){
         maxWeight+=room.getCookie();
         room.removeCookie();
         room.setCookie(0);
     }
 
-    //背包剩余容量
+    /**
+     * 求出玩家背包剩余量
+     * @return
+     */
     public int freeSpace(){
         int sum=0;
         for(int i=0;i<PlayerWeights.size();i++){
