@@ -10,8 +10,8 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private ArrayList<Integer> weight = new ArrayList<>();//房间内物品重量
-    private int cookie;//饼干大小
+    private ArrayList<Integer> weight = new ArrayList<>();
+    private int cookie;
 
     public Room(String description)
     {
@@ -38,11 +38,6 @@ public class Room
 
     public String getLongDescription()
     {
-        String weightdescription="";
-        for(int i=0;i<weight.size();i++){
-            if(i!=weight.size()-1) weightdescription+="物品i的重量为"+weight.get(i)+"\n";
-            else weightdescription+="物品"+i+1+"的重量为"+weight.get(i)+"\n";
-        }
         return "You are " + description + ".\n" + getExitString();
     }
 
@@ -61,18 +56,28 @@ public class Room
         return exits.get(direction);
     }
 
-    //移除物品
+    /**
+     * 房间内的某件物品被拿走
+     * @param n 物品编号
+     */
     public void removeWeight(int n){
         weight.remove(n);
     }
 
-    //增加物品
+    /**
+     * 房间内增加一件物品
+     * @param w 物品重量
+     */
     public void addWeight(int w){
         weight.add(w);
     }
 
+    /**
+     * 移除房间内饼干
+     */
     public void removeCookie(){
         cookie=0;
     }
 }
+
 
