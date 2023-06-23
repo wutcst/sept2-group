@@ -25,12 +25,12 @@
 ![用例图](项目图片/uml用例图.png)
 #### 4.功能
 ###### 4.1房间内增加物品
-```aidl
+```java
 private ArrayList<Integer> weight = new ArrayList<>();
 private int cookie;
 ```
 ###### 4.2增加玩家类
-```aidl
+```java
 public class Player {
     String name;//玩家姓名
     int maxWeight;//最大重量
@@ -89,7 +89,7 @@ public class Player {
 }
 ```
 ###### 4.3Back功能
-```aidl
+```java
 public class BackCommand extends Command {
     @Override
     /**
@@ -131,7 +131,7 @@ public class BackCommand extends Command {
 }
 ```
 ###### 4.4拿去和丢弃物品，增加饼干功能
-```aidl
+```java
 /**
      * 当前房间内的某个物品被玩家拿去
      * @param n 拿去物品编号
@@ -158,7 +158,7 @@ public class BackCommand extends Command {
     }
 ```
 ###### 4.5随机房间
-```aidl
+```java
 Room random = new Room("in the random room");
 random.setExit("north",theater);
 theater.setExit("south",random);//随机房间的位置
