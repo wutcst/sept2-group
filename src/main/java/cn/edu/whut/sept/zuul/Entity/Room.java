@@ -46,7 +46,9 @@ public class Room
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += " " + exit;
+            if(!exit.equals("radom")){
+                returnString += " " + exit;
+            }
         }
         return returnString;
     }
