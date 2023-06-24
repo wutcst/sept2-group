@@ -1,5 +1,5 @@
-# 软件工程实践二
-#### 1.任务分配
+#软件工程实践二
+####1.任务分配
 | 成员 | 任务 |
 |----|:----:|
 | 李成吉  | 后端逻辑开发 |
@@ -7,7 +7,7 @@
 | 王茁园  | 单元测试 |
 | 汪振宇  | 单元测试 |
 
-#### 2.扩展功能
+####2.扩展功能
 2.1 扩展游戏，使得一个房间里可以存放任意数量的物件，每个物件可以有一个描述和一个重量值，玩家进入一个房间后，可以通过“look”命令查看当前房间的信息以及房间内的所有物品信息；
 
 2.2 在游戏中实现一个“back”命令，玩家输入该命令后会把玩家带回上一个房间；
@@ -18,22 +18,37 @@
 
 2.5 在游戏中新建一个独立的Player类用来表示玩家，玩家具有一定的承受重量上限，玩家可以拿去房间内的物品或丢弃自身的物品，房间内设置有饼干，吃掉饼干可以增加自己的承受重量上限
 
-#### 3.UML
+####3.UML
 类图
-
 ![类图](项目图片/uml类图.png)
-
-
 用例图
-
 ![用例图](项目图片/uml用例图.png)
-#### 4.功能
-###### 4.1房间内增加物品
+
+####4.issue任务分配
+![issue](项目图片/issue.png)
+
+####5.开发分支模型
+![分支](项目图片/分支.png)
+
+Front_end前端页面编写分支
+![分支1](项目图片/分支1.png)
+
+Back_end后端开发分支
+![分支2](项目图片/分支2.png)
+
+Test1单元测试分支，对Game类部分方法进行测试
+![分支3](项目图片/分支3.png)
+
+Test2单元测试分支，对back功能进行测试
+![分支4](项目图片/分支4.png)
+
+####5.功能
+######5.1房间内增加物品
 ```java
 private ArrayList<Integer> weight = new ArrayList<>();
 private int cookie;
 ```
-###### 4.2增加玩家类
+######5.2增加玩家类
 ```java
 public class Player {
     String name;//玩家姓名
@@ -92,7 +107,7 @@ public class Player {
     }
 }
 ```
-###### 4.3Back功能
+######5.3Back功能
 ```java
 public class BackCommand extends Command {
     @Override
@@ -134,7 +149,7 @@ public class BackCommand extends Command {
     }
 }
 ```
-###### 4.4拿去和丢弃物品，增加饼干功能
+######5.4拿去和丢弃物品，增加饼干功能
 ```java
 /**
      * 当前房间内的某个物品被玩家拿去
@@ -161,16 +176,16 @@ public class BackCommand extends Command {
         player.eatMagicCookie(currentRoom);
     }
 ```
-###### 4.5随机房间
+######5.5随机房间
 ```java
 Room random = new Room("in the random room");
 random.setExit("north",theater);
 theater.setExit("south",random);//随机房间的位置
 ```
-#### 5.前端部分代码
+####6.前端部分代码
 ![前端](项目图片/前端.png)
 
-#### 6.运行结果
+####7.运行结果
 ![运行1](项目图片/运行1.png)
 
 ![运行2](项目图片/运行2.png)
@@ -181,10 +196,8 @@ theater.setExit("south",random);//随机房间的位置
 
 ![运行5](项目图片/运行5.png)
 
-#### 7.单元测试
-
+####8.单元测试
 对Game类中部分方法进行测试
-
 ![测试1](项目图片/测试1.png)
 ![测试结果1](项目图片/测试1结果.png)
 
@@ -192,14 +205,12 @@ theater.setExit("south",random);//随机房间的位置
 ![测试2](项目图片/测试2结果1.png)
 ![测试2](项目图片/测试2结果2.png)
 
-#### 8.利用github平台的actions功能进行自动化检测和打包
+####9.利用github平台的actions功能进行自动化检测和打包
 
 ![actions](项目图片/actions.png)
 
 ![actions](项目图片/检测.png)
 
 ![actions](项目图片/打包.png)
-
-
 
 
